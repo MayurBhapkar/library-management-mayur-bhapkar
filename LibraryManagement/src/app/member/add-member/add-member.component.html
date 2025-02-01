@@ -1,0 +1,115 @@
+
+
+<form [formGroup]="_frmGroup" (ngSubmit)="OnSubmit()">
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Name
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <input type="text" maxlength="30" class="form-control" formControlName="nm">
+            </div>
+            <div class="text-danger" *ngIf="f['nm'].invalid && (f['nm'].dirty || f['nm'].touched )">
+              <div *ngIf="f['nm'].errors!['required']">
+                 Name is required.
+              </div>
+              <div *ngIf="f['nm'].errors!['maxlength']">
+                 Name must be 30 character long
+              </div>
+              <div *ngIf="f['nm'].errors!['minlength']">
+                 Name must be 2 character long
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Mobile No
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <input type="text" maxlength="10" class="form-control" formControlName="mobile">
+      
+            </div>
+            <div class="text-danger" *ngIf="f['mobile'].invalid && (f['mobile'].dirty || f['mobile'].touched )">
+              <div *ngIf="f['mobile'].errors!['required']">
+                Mobile No is required.
+              </div>
+              <div *ngIf="f['mobile'].errors!['pattern']">
+                Mobile No must be in numerical format.
+              </div>
+             
+            </div>
+          </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mt-2">
+            <div class="group">
+              <label>Address
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <input type="text" maxlength="100" class="form-control" formControlName="address">
+      
+            </div>
+            <div class="text-danger" *ngIf="f['address'].invalid && (f['address'].dirty || f['address'].touched )">
+              <div *ngIf="f['address'].errors!['required']">
+                Address is required.
+              </div>
+              <div *ngIf="f['address'].errors!['maxlength']">
+                Address must be 20 character long
+              </div>
+            </div>
+          </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Email
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <input type="text" class="form-control" formControlName="email">
+      
+            </div>
+            <div class="text-danger" *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched )">
+              <div *ngIf="f['email'].errors!['required']">
+                Email is required.
+              </div>
+             
+            </div>
+          </div>
+
+          <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Admssion Date
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <input type="date" class="form-control" formControlName="admissionDate">
+      
+            </div>
+            <div class="text-danger" *ngIf="f['admissionDate'].invalid && (f['admissionDate'].dirty || f['admissionDate'].touched )">
+              <div *ngIf="f['admissionDate'].errors!['required']">
+                Admssion Date is required.
+              </div>
+             
+            </div>
+          </div>
+
+
+    </div>
+    
+    
+    <div class="row p-md-2 p-sm-0 ">
+        <div class="col-md-2 offset-md-10 ">
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary mt-2" type="submit" [disabled]="_frmGroup.invalid">Save</button>
+          </div>
+        </div>
+      </div>
+    
+    
+    </form>
+

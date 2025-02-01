@@ -1,0 +1,159 @@
+<div class="container-fluid py-4">
+	<div class="row">
+		<div class="col-12">
+			<div class="card my-4">
+				<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+					<div class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-1">
+						<div class="row">
+							<div class="col-md-10">
+								<h6 class="text-white title ps-3 ">Issue Details</h6>
+							</div>  
+						</div>
+					</div>
+				</div>
+			  <div class="card-body px-3 pb-2">
+
+		  <form [formGroup]="_frmGroupBetweenDate" (ngSubmit)="getBookIssueData()">
+
+            <div class="row pt-2" >
+                <div class="col-md-5  mt-2">
+                    <div class="group">
+						<label>Start Date</label>
+                        <input type="date" required="required" class="form-control" formControlName="startdt">
+                      
+                        
+                    </div>
+                    <div class="text-danger">
+                        <div class="text-danger" *ngIf="getControlsBetweenDate['startdt'].invalid && (getControlsBetweenDate['startdt'].dirty || getControlsBetweenDate['startdt'].touched)">
+                            <div *ngIf="getControlsBetweenDate['startdt'].errors!['required']">
+                                Start Date is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5  mt-2">
+                    <div class="group">
+						<label>End Date</label>
+                        <input type="date" required="required" class="form-control"  formControlName="enddt">
+                       
+                        
+                    </div>
+                    <div class="text-danger">
+                        <div class="text-danger" *ngIf="getControlsBetweenDate['enddt'].invalid && (getControlsBetweenDate['enddt'].dirty || getControlsBetweenDate['enddt'].touched)">
+                            <div *ngIf="getControlsBetweenDate['enddt'].errors!['required']">
+                                End Date is required.
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+
+				<div class="col-md-2 mt-4 ">
+					
+					  <div class="d-grid gap-2">
+						<button class="btn btn-primary mt-2" type="submit" [disabled]="_frmGroupBetweenDate.invalid">Save</button>
+					  </div>
+				  </div>
+    
+               
+            </div>
+        </form>
+        <div class="row">
+			<div class="col-md-6 mt-2">
+				<div class="group">
+				  <input type="search" class="form-control" placeholder="Search......" [(ngModel)]="SearchService.searchTerm">
+				</div>
+			  </div>
+		  </div>
+
+		
+
+		<table class="table table-striped scrollbar">
+			<thead>
+			  <tr>
+				<th scope="col">#</th>
+				<th scope="col">Member</th>
+				<th scope="col">Book</th>
+				<th scope="col">Date</th>
+				<th scope="col">Due Date</th>
+				<th scope="col">Return</th>
+				<th scope="col">Actions</th>
+			  </tr>
+			</thead>
+		  
+			<tbody>
+			  <tr *ngFor="let item of items$ | async; let i = index">
+				<td>
+				  <div class="btn-group" role="group" aria-label="...">
+					<button *ngIf="!item.isReturn && !item.isEditing" type="button" (click)="Edit(item)">
+					  <i ngbTooltip="Edit" class="fa fa-pencil-square text-primary"></i>
+					</button>
+					<button type="button" (click)="delete(item.id)">
+					  <i ngbTooltip="Delete" class="fa fa-trash text-danger"></i>
+					</button>
+				  </div>
+				</td>
+		  
+				<td>
+				  <ng-container *ngIf="!item.isEditing; else editMember">
+					<ngb-highlight [result]="item.member.nm" [term]="SearchService.searchTerm"></ngb-highlight>
+				  </ng-container>
+				  <ng-template #editMember>
+					<ng-select [items]="member" bindLabel="name" [virtualScroll]="true" bindValue="id"
+                    class="form-control" appendTo="body" [(ngModel)]="item.memberId">
+                </ng-select>
+				  </ng-template>
+				</td>
+		  
+				<td>
+				  <ng-container *ngIf="!item.isEditing; else editBook">
+					<ngb-highlight [result]="item.book.nm" [term]="SearchService.searchTerm"></ngb-highlight>
+				  </ng-container>
+				  <ng-template #editBook>
+					<ng-select [items]="book" bindLabel="name" [virtualScroll]="true" bindValue="id"
+                    class="form-control" appendTo="body" [(ngModel)]="item.bookId">
+                </ng-select>
+				  </ng-template>
+				</td>
+		  
+				<td>
+				  <ng-container >
+					{{ item.date | date: 'dd-MM-yyyy' }}
+				  </ng-container>
+				</td>
+		  
+				<td>
+				  <ng-container >
+					{{ item.duedate | date: 'dd-MM-yyyy' }}
+				  </ng-container>
+				</td>
+		  
+				<td>
+				  <ng-container >
+					{{ item.isReturn ? 'YES' : 'NO' }}
+				  </ng-container>
+				  <ng-template #editReturnStatus>
+					<select [(ngModel)]="item.isReturn" class="form-control">
+					  <option [value]="false">NO</option>
+					  <option [value]="true">YES</option>
+					</select>
+				  </ng-template>
+				</td>
+		  
+				<td>
+				  <button *ngIf="item.isEditing" type="button" (click)="save(item)">
+					<i ngbTooltip="Save" class="fa fa-save text-success"></i>
+				  </button>
+				  <button *ngIf="item.isEditing" type="button" (click)="cancel(item)">
+					<i ngbTooltip="Cancel" class="fa fa-times text-warning"></i>
+				  </button>
+				</td>
+			  </tr>
+			</tbody>
+		  </table>
+		  
+	</div>
+</div>
+</div>
+</div>
+</div>

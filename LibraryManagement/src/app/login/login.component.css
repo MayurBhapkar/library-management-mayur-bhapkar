@@ -1,0 +1,16 @@
+.content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+   
+  }
+
+
+  .logo {
+    width: 100; /* Adjust the width as needed */
+    height: 100; /* This will maintain the aspect ratio */
+    display: block; /* This will make the image a block element so it doesn't interfere with other elements */
+    margin: 0 auto 20px; /* Adjust the margin as needed */
+  }

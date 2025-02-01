@@ -1,0 +1,124 @@
+<div class="row">
+    <!-- Card 1 -->
+    <div class="offset-1 col-md-5  ">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h6 class="card-title">Today Issue Book : {{count.length}}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 ">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h6 class="card-title">Today Return Book : {{returnCount.length}}</h6>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+</div>
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-1">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h6 class="text-white title ps-3 ">Return</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body px-3 pb-2">
+
+                    <form [formGroup]="_frmGroupBetweenDate" (ngSubmit)="getBookIssueData()">
+
+                        <div class="row pt-2">
+                            <div class="col-md-5  mt-2">
+                                <div class="group">
+                                    <label>Start Date</label>
+                                    <input type="date" required="required" class="form-control"
+                                        formControlName="startdt">
+                                </div>
+                                <div class="text-danger">
+                                    <div class="text-danger"
+                                        *ngIf="getControlsBetweenDate['startdt'].invalid && (getControlsBetweenDate['startdt'].dirty || getControlsBetweenDate['startdt'].touched)">
+                                        <div *ngIf="getControlsBetweenDate['startdt'].errors!['required']">
+                                            Start Date is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5  mt-2">
+                                <div class="group">
+                                    <label>End Date</label>
+                                    <input type="date" required="required" class="form-control" formControlName="enddt">
+                                </div>
+                                <div class="text-danger">
+                                    <div class="text-danger"
+                                        *ngIf="getControlsBetweenDate['enddt'].invalid && (getControlsBetweenDate['enddt'].dirty || getControlsBetweenDate['enddt'].touched)">
+                                        <div *ngIf="getControlsBetweenDate['enddt'].errors!['required']">
+                                            End Date is required.
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 mt-4 ">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-primary mt-2" type="submit"
+                                        [disabled]="_frmGroupBetweenDate.invalid">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <table class="table table-striped scrollbar">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Member</th>
+                                <th scope="col">Book</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Due Date</th>
+                                <th scope="col">Return</th>
+                                <th scope="col">Return Date</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let item of bookIssue">
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="...">
+                                        <button type="button" (click)="isReturn(item)">
+                                            <i class="fa fa-pencil-square"></i>
+                                        </button>
+
+                                        <!-- <button type="button" (click)="delete(item.id)" >
+									<i class="fa fa-trash" ></i>
+								</button> -->
+                                    </div>
+
+                                </td>
+                                <td>{{ item.member.nm }}</td>
+                                <td>{{ item.book.nm }}</td>
+                                <td>{{ item.date | date : 'dd-MM-yyyy' }}</td>
+                                <td>{{ item.duedate | date : 'dd-MM-yyyy' }}</td>
+                                <td>{{item.isReturn ==false?"NO":"YES"}}</td>
+                                <td>{{item.returnDate==null?'':item.returnDate| date : 'dd-MM-yyyy' }}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

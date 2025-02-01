@@ -1,0 +1,68 @@
+/* General card styling */
+.px-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.px-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Card Header */
+.px-card-header {
+    position: relative;
+    background: linear-gradient(135deg, #f9f9f9, #f1f1f1);
+    border-radius: 12px 12px 0 0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Icon container */
+.icon-shape {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 24px;
+    color: #fff;
+}
+
+
+
+/* Text Styling */
+.text-sm {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.text-end {
+    text-align: right;
+}
+
+/* Footer Styling */
+.card-footer {
+    padding: 15px;
+    background: #f8f9fa;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .col-xl-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+}

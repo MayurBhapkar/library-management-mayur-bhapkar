@@ -1,0 +1,56 @@
+<div class="content  w-40   shadow p-3 mb-5 bg-body rounded  " *ngIf="!islogin">
+    <!-- <img src="../../assets/download1.jpg" class="logo rounded mx-auto d-block align-items-lg-center" id="icon"
+      alt="Logo" /> -->
+      <h4 style="text-align: center;">Administrator Login</h4>
+    <form [formGroup]="_loginForm" (ngSubmit)="login()">
+  
+      <!-- <h1 class="text-center">{{title}}</h1> -->
+  
+  <div class="row">
+    <div class="col-md-12 mb-3 ">
+      <div class="group">
+        <input type="username" class="form-control"  
+          formControlName="uname">
+        <label>UserName</label>
+  
+      </div>
+      <div class="text-danger" *ngIf="f['uname'].invalid && (f['uname'].dirty || f['uname'].touched )">
+  
+        <div *ngIf="f['uname'].errors!['required']">
+          Username is required.
+        </div>
+        <div *ngIf="f['uname'].errors!['maxlength']">
+          UserName must be 5 character long
+        </div>
+        <div *ngIf="f['uname'].errors!['minlength']">
+          UserName must be 2 character long
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+  <div class="col-md-12">
+      <div class="group">
+        <input type="password" class="form-control"
+          formControlName="upassword">
+        <label >Password</label>
+      </div>
+      <div class="text-danger"
+        *ngIf="f['upassword'].invalid && (f['upassword'].dirty || f['upassword'].touched )">
+        <div *ngIf="f['upassword'].errors!['required']">
+          Password is required.
+        </div>
+      </div>
+    </div>
+  </div>
+      <div class="d-grid col-6 mx-auto">
+        <button class="btn btn-primary mt-2" type="submit" (click)="login()"
+          [disabled]="_loginForm.invalid">Login</button>
+      </div>
+    </form>
+  </div>
+  
+  
+  <router-outlet *ngIf="islogin"></router-outlet>

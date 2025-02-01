@@ -1,0 +1,45 @@
+
+		<table class="table table-striped scrollbar">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+					<th scope="col">Address</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Admission Date</th>
+				</tr>
+			</thead>
+            
+			<tbody>
+
+				<tr *ngFor="let item of member">
+						<td>
+							<div class="btn-group" role="group" aria-label="...">
+								<button  type="button" (click)="Edit(item,update)" >
+								<i ngbTooltip="Edit" class="fa fa-pencil-square"></i>
+								</button>
+							</div>
+						</td>
+					<td>{{ item.nm }}</td>
+					<td>{{ item.address }}</td>
+                    <td>{{ item.mobile }}</td>
+					<td>{{ item.email }}</td>
+                    <td>{{ item.admissionDate | date :'dd-MM-yyyy'}}</td>
+					
+				</tr>
+
+			</tbody>
+		</table>
+	
+
+<ng-template #update let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Member Update</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"><i
+          class="fa fa-x-circle text-primary"></i></button>
+    </div>
+    <div class="modal-body p-5">
+      <app-add-member [data]="this.memberdata" />
+    </div>
+  </ng-template>

@@ -1,0 +1,132 @@
+<form [formGroup]="_frmGroup" (ngSubmit)="OnSubmit()">
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Book Name
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <input type="text" class="form-control" formControlName="nm">
+      
+            </div>
+            <div class="text-danger" *ngIf="f['nm'].invalid && (f['nm'].dirty || f['nm'].touched )">
+              <div *ngIf="f['nm'].errors!['required']">
+                Book Name is required.
+              </div>
+              <div *ngIf="f['nm'].errors!['maxlength']">
+                Book Name must be 20 character long
+              </div>
+              <div *ngIf="f['nm'].errors!['minlength']">
+                Book Name must be 2 character long
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Author
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <input type="text" class="form-control" formControlName="author">
+      
+            </div>
+            <div class="text-danger" *ngIf="f['author'].invalid && (f['author'].dirty || f['author'].touched )">
+              <div *ngIf="f['author'].errors!['required']">
+                Author is required.
+              </div>
+              <div *ngIf="f['author'].errors!['maxlength']">
+                Author must be 20 character long
+              </div>
+              <div *ngIf="f['author'].errors!['minlength']">
+                Author must be 2 character long
+              </div>
+            </div>
+          </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Publication
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <input type="text" class="form-control" formControlName="publication">
+      
+            </div>
+            <div class="text-danger" *ngIf="f['publication'].invalid && (f['publication'].dirty || f['publication'].touched )">
+              <div *ngIf="f['publication'].errors!['required']">
+                Publication is required.
+              </div>
+              <div *ngIf="f['publication'].errors!['maxlength']">
+                Publication must be 20 character long
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Published Year
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <input type="text" class="form-control" formControlName="year">
+      
+            </div>
+            <div class="text-danger" *ngIf="f['year'].invalid && (f['year'].dirty || f['year'].touched )">
+              <div *ngIf="f['year'].errors!['required']">
+                Published Year is required.
+              </div>
+             
+            </div>
+          </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Book Category
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <input type="text" class="form-control" formControlName="category">
+      
+            </div>
+            <div class="text-danger" *ngIf="f['category'].invalid && (f['category'].dirty || f['category'].touched )">
+              <div *ngIf="f['category'].errors!['required']">
+                Book Category is required.
+              </div>
+             
+            </div>
+          </div>
+
+          <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Stock
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <input type="text" class="form-control" formControlName="stock">
+      
+            </div>
+            <div class="text-danger" *ngIf="f['stock'].invalid && (f['stock'].dirty || f['stock'].touched )">
+              <div *ngIf="f['stock'].errors!['required']">
+                Stock is required.
+              </div>
+             
+            </div>
+          </div>
+
+
+    </div>
+    
+    
+      <div class="row p-md-2 p-sm-0 ">
+        <div class="col-md-2 offset-md-10 ">
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary mt-2" type="submit" [disabled]="_frmGroup.invalid">Save</button>
+          </div>
+        </div>
+      </div>
+    
+    
+    </form>

@@ -1,0 +1,114 @@
+<form [formGroup]="_frmGroup" (ngSubmit)="OnSubmit()">
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Member Name
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <ng-select [items]="member" bindLabel="name" [virtualScroll]="true" bindValue="id"
+                    class="form-control" appendTo="body" formControlName="memberId">
+                </ng-select>
+            </div>
+            <div class="text-danger" *ngIf="f['memberId'].invalid && (f['memberId'].dirty || f['memberId'].touched )">
+              <div *ngIf="f['memberId'].errors!['required']">
+                Member Name is required.
+              </div>  
+            </div>
+          </div>
+
+          <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Book
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <ng-select [items]="book" bindLabel="name" [virtualScroll]="true" bindValue="id"
+                    class="form-control" appendTo="body" formControlName="bookId">
+                </ng-select>
+            </div>
+            <div class="text-danger" *ngIf="f['bookId'].invalid && (f['bookId'].dirty || f['bookId'].touched )">
+              <div *ngIf="f['bookId'].errors!['required']">
+                Book is required.
+              </div>
+            </div>
+          </div>
+
+
+    </div>
+
+     <div class="row">
+        <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Date
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <input type="date" class="form-control" formControlName="date">
+      
+            </div>
+            <div class="text-danger" *ngIf="f['date'].invalid && (f['date'].dirty || f['date'].touched )">
+              <div *ngIf="f['date'].errors!['required']">
+                Date is required.
+              </div>
+              
+            </div>
+          </div>
+
+          <div class="col-md-6 mt-2">
+            <div class="group">
+              <label>Due Date
+                <b class="text-danger"> &nbsp;* </b>
+              </label>
+              <input type="date" class="form-control" formControlName="duedate">
+      
+            </div>
+            <div class="text-danger" *ngIf="f['duedate'].invalid && (f['duedate'].dirty || f['duedate'].touched )">
+              <div *ngIf="f['duedate'].errors!['required']">
+                Due Date is required.
+              </div>
+             
+            </div>
+          </div>
+
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mt-2">
+        <div class="group">
+          <label>Return Date</label>
+          <input type="date" class="form-control" formControlName="returnDate">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 mt-2">
+          <div class="group">
+            <label>Remark
+            </label>
+            <input type="text" maxlength="100" class="form-control" formControlName="remark">
+    
+          </div>
+          <div class="text-danger" *ngIf="f['remark'].invalid && (f['remark'].dirty || f['remark'].touched )">
+            <div *ngIf="f['remark'].errors!['minlength']">
+              Remark must be 2 character long
+            </div>
+            <div *ngIf="f['remark'].errors!['maxlength']">
+              Remark must be 100 character long
+            </div>
+          </div>
+        </div>
+
+  </div>
+    
+    
+      <div class="row p-md-2 p-sm-0 ">
+        <div class="col-md-2 offset-md-10 ">
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary mt-2" type="submit" [disabled]="_frmGroup.invalid">Save</button>
+          </div>
+        </div>
+      </div>
+    
+    
+    </form>
+

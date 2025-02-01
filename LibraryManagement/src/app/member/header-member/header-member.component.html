@@ -1,0 +1,43 @@
+<div class="container-fluid py-4">
+  <div class="row">
+      <div class="col-12">
+          <div class="card my-4">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                  <div class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-1">
+                      <div class="row">
+                          <div class="col-md-10">
+                              <h6 class="text-white title ps-3 ">Member</h6>
+                          </div>  
+                      </div>
+                  </div>
+              </div>
+            <div class="card-body px-3 pb-2">
+              <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                <li [ngbNavItem]="1">
+                  <button ngbNavLink>Add</button>
+                  <ng-template ngbNavContent>
+                    <div class="p-4">
+                      <app-add-member />
+                    </div>
+                  </ng-template>
+                </li>
+              
+                <li [ngbNavItem]="2">
+                  <button ngbNavLink>Details</button>
+                  <ng-template ngbNavContent>
+                    <app-details-member />
+                  </ng-template>
+                </li>
+                
+              </ul>
+              
+              <div [ngbNavOutlet]="nav" class="mt-2"></div>
+            </div>
+          </div>
+      </div>
+    </div>
+    </div>
+    
+
+          
+
